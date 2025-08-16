@@ -1,0 +1,823 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadula Vinod - AI Engineer & Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .project-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-inter bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <!-- @COMPONENT: Navigation [fixed header with smooth scroll links] -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold gradient-text">Sadula Vinod</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Home</a>
+                        <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">About</a>
+                        <a href="#experience" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Experience</a>
+                        <a href="#projects" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Projects</a>
+                        <a href="#certifications" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Certifications</a>
+                        <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:inline"></i>
+                </button>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
+                    <a href="#home" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Home</a>
+                    <a href="#about" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">About</a>
+                    <a href="#experience" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Experience</a>
+                    <a href="#projects" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Projects</a>
+                    <a href="#certifications" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Certifications</a>
+                    <a href="#contact" class="block px-3 py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- Hero Section -->
+    <!-- @COMPONENT: HeroSection [main landing area with profile and CTA] -->
+    <section id="home" class="min-h-screen flex items-center pt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                        Hi, I'm <span class="gradient-text">Sadula Vinod</span>
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-6">
+                        AI Engineer & Full-Stack Developer
+                    </h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                        Aspiring AI Engineer and full-stack web developer with hands-on experience in machine learning, web technologies, and backend development. Eager to leverage technical skills and AI & ML foundation to contribute to innovative projects.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200 text-center">
+                            Get In Touch
+                        </a>
+                        <a href="#resume" class="border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 text-center">
+                            Download Resume
+                        </a>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-6">
+                        <a href="https://github.com/vinod0609600" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vinod-sadula-5753402bb/" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="mailto:sadulavinod06@gmail.com" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="flex justify-center lg:justify-end animate-fade-in">
+                    <div class="relative">
+                        <!-- Professional developer working on laptop -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500" 
+                             alt="Sadula Vinod - Professional headshot" 
+                             class="w-80 h-80 object-cover rounded-2xl shadow-2xl">
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-500 rounded-full flex items-center justify-center animate-bounce-slow">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- About Section -->
+    <!-- @COMPONENT: AboutSection [education, skills, and bio details] -->
+    <section id="about" class="py-20 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    Learn more about my background, education, and technical expertise
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold mb-6">Education</h3>
+                    
+                    <div class="bg-slate-50 dark:bg-slate-700 p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fas fa-graduation-cap text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-lg">B.Tech in Computer Science Engineering</h4>
+                                <p class="text-primary-600 dark:text-primary-400 font-medium">Marri Laxman Reddy Institute of Technology, Hyderabad</p>
+                                <p class="text-slate-600 dark:text-slate-400">2023 - Present</p>
+                                <div class="mt-2">
+                                    <span class="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-3 py-1 rounded-full text-sm font-medium">
+                                        CGPA: 9.0/10
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700 p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fas fa-certificate text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-lg">Diploma in Mining Engineering</h4>
+                                <p class="text-primary-600 dark:text-primary-400 font-medium">Govt Polytechnic-Kothagudem</p>
+                                <p class="text-slate-600 dark:text-slate-400">2020 - 2023</p>
+                                <div class="mt-2">
+                                    <span class="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-3 py-1 rounded-full text-sm font-medium">
+                                        CGPA: 9.8/10
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Programming Languages -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-slate-700 dark:text-slate-300">Programming Languages</h4>
+                            <div class="space-y-3">
+                                <!-- @STATE: skillPercentages: object with skill levels -->
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Python</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
+                                    <div class="skill-bar bg-primary-500 h-2 rounded-full" style="width: 90%;"></div>
+                                </div>
+
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">JavaScript</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
+                                    <div class="skill-bar bg-primary-500 h-2 rounded-full" style="width: 85%;"></div>
+                                </div>
+
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Java</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
+                                    <div class="skill-bar bg-primary-500 h-2 rounded-full" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frameworks & Technologies -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-slate-700 dark:text-slate-300">Frameworks & Technologies</h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2 rounded-lg text-sm font-medium text-center">React.js</span>
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-lg text-sm font-medium text-center">Node.js</span>
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-2 rounded-lg text-sm font-medium text-center">TensorFlow</span>
+                                <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-lg text-sm font-medium text-center">PyTorch</span>
+                                <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-2 rounded-lg text-sm font-medium text-center">MongoDB</span>
+                                <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-2 rounded-lg text-sm font-medium text-center">Express.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AboutSection -->
+
+    <!-- Experience Section -->
+    <!-- @COMPONENT: ExperienceSection [work experience details] -->
+    <section id="experience" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    My professional journey and hands-on experience in the tech industry
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-primary-200 dark:bg-primary-800"></div>
+                    
+                    <!-- Experience Item -->
+                    <div class="relative flex items-start space-x-6 pb-8">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center border-4 border-white dark:border-slate-900 shadow-lg">
+                                <i class="fas fa-code text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="text-xl font-bold">Blockchain Developer</h3>
+                                <span class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full">3 months</span>
+                            </div>
+                            <p class="text-primary-600 dark:text-primary-400 font-medium mb-3">Diigo</p>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Worked on decentralized Ethereum applications and learned comprehensive blockchain development processes. Gained hands-on experience with smart contracts, DeFi protocols, and blockchain architecture.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-xs font-medium">Ethereum</span>
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-medium">Smart Contracts</span>
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-xs font-medium">DeFi</span>
+                                <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-xs font-medium">Web3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ExperienceSection -->
+
+    <!-- Projects Section -->
+    <!-- @COMPONENT: ProjectsSection [showcase of major projects] -->
+    <section id="projects" class="py-20 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    A showcase of my recent work combining AI, machine learning, and full-stack development
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Project 1: Parkinson's Disease Detection -->
+                <div class="project-card bg-slate-50 dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg">
+                    <!-- AI-powered medical interface dashboard -->
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                         alt="Medical AI interface showing brain scans and analysis" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Parkinson's Disease Detection System</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Real-time system detecting Parkinson's disease using voice inputs with 22 extracted voice features. Built with Python and machine learning, featuring a Streamlit web application for user interaction.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-medium">Python</span>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-xs font-medium">Machine Learning</span>
+                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-xs font-medium">Streamlit</span>
+                            <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text-xs font-medium">Scikit-learn</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
+                                <i class="fab fa-github mr-2"></i>
+                                Code
+                            </a>
+                            <a href="#" class="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: VR Anatomy Exploration -->
+                <div class="project-card bg-slate-50 dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg">
+                    <!-- VR headset and 3D medical visualization -->
+                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                         alt="VR headset with 3D holographic medical models and interface" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">VR Anatomy Exploration Using AI</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Interactive VR platform for human anatomy learning with AI-driven object interaction and real-time 3D model rendering. Built using Unity engine with advanced VR capabilities.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-xs font-medium">Unity</span>
+                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-xs font-medium">VR</span>
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-medium">AI</span>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-xs font-medium">3D Modeling</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
+                                <i class="fab fa-github mr-2"></i>
+                                Code
+                            </a>
+                            <a href="#" class="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Demo Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Projects Button -->
+            <div class="text-center mt-12">
+                <a href="https://github.com/vinod0609600" target="_blank" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200">
+                    <i class="fab fa-github mr-2"></i>
+                    View More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProjectsSection -->
+
+    <!-- Certifications Section -->
+    <!-- @COMPONENT: CertificationsSection [display all certifications] -->
+    <section id="certifications" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Certifications</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    Professional certifications and courses that showcase my continuous learning journey
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- @MAP: certifications.map(cert => ( -->
+                
+                <!-- Certification 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
+                            <i class="fab fa-python text-blue-600 dark:text-blue-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Programming Essentials in Python</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">CISCO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
+                            <i class="fas fa-code text-green-600 dark:text-green-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Data Structures & Algorithms using Java</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">NPTEL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 3 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-lg">
+                            <i class="fas fa-chart-bar text-purple-600 dark:text-purple-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Data Analytics Essentials</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">CISCO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 4 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 dark:bg-red-900 p-3 rounded-lg">
+                            <i class="fas fa-globe text-red-600 dark:text-red-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Web Fundamentals</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">IBM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 5 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 dark:bg-yellow-900 p-3 rounded-lg">
+                            <i class="fas fa-sitemap text-yellow-600 dark:text-yellow-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Data Structures & Algorithms</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">SMART INTERVIEWS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 6 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-lg">
+                            <i class="fas fa-brain text-indigo-600 dark:text-indigo-400 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Oracle Cloud AI Foundation</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Oracle</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: CertificationsSection -->
+
+    <!-- Contact Section -->
+    <!-- @COMPONENT: ContactSection [contact form and information] -->
+    <section id="contact" class="py-20 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    Have a project in mind or want to collaborate? Feel free to reach out!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fas fa-envelope text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <a href="mailto:sadulavinod06@gmail.com" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                    sadulavinod06@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fas fa-phone text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <a href="tel:+919704405296" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                    +91 9704405296
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fab fa-linkedin text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/vinod-sadula-5753402bb/" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                    vinod-sadula-5753402bb
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 p-3 rounded-lg">
+                                <i class="fab fa-github text-primary-600 dark:text-primary-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">GitHub</h4>
+                                <a href="https://github.com/vinod0609600" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+                                    vinod0609600
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-slate-50 dark:bg-slate-700 p-8 rounded-xl">
+                    <form id="contact-form" class="space-y-6">
+                        <!-- @STATE: formData: {name, email, message} -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-slate-600 dark:text-white transition-colors duration-200"
+                                   placeholder="Your Name">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-slate-600 dark:text-white transition-colors duration-200"
+                                   placeholder="your.email@example.com">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-slate-600 dark:text-white transition-colors duration-200 resize-none"
+                                      placeholder="Tell me about your project or inquiry..."></textarea>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactSection -->
+
+    <!-- Resume Download Section -->
+    <!-- @COMPONENT: ResumeSection [resume download functionality] -->
+    <section id="resume" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg">
+                <div class="mb-6">
+                    <i class="fas fa-file-download text-6xl text-primary-600 dark:text-primary-400 mb-4"></i>
+                    <h2 class="text-3xl font-bold mb-4">Download My Resume</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                        Get a comprehensive overview of my skills, experience, and projects in a downloadable PDF format.
+                    </p>
+                </div>
+                
+                <button id="download-resume" class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-3 mx-auto">
+                    <i class="fas fa-download"></i>
+                    <span>Download Resume (PDF)</span>
+                </button>
+                
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-4">
+                    Last updated: December 2024
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ResumeSection -->
+
+    <!-- Footer -->
+    <!-- @COMPONENT: Footer [social links and copyright] -->
+    <footer class="bg-slate-900 dark:bg-slate-950 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">Sadula Vinod</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        AI Engineer & Full-Stack Developer passionate about creating innovative solutions that make a difference.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#about" class="block text-slate-400 hover:text-white transition-colors duration-200">About</a>
+                        <a href="#projects" class="block text-slate-400 hover:text-white transition-colors duration-200">Projects</a>
+                        <a href="#experience" class="block text-slate-400 hover:text-white transition-colors duration-200">Experience</a>
+                        <a href="#contact" class="block text-slate-400 hover:text-white transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/vinod0609600" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-200">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vinod-sadula-5753402bb/" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-200">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="mailto:sadulavinod06@gmail.com" class="text-slate-400 hover:text-white transition-colors duration-200">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 text-center">
+                <p class="text-slate-400">
+                    © 2024 Sadula Vinod. All rights reserved. Built with ❤️ and modern web technologies.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        (function() {
+            // Dark mode toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            
+            // Check for saved theme preference or default to 'light'
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            html.classList.toggle('dark', currentTheme === 'dark');
+            
+            themeToggle.addEventListener('click', function() {
+                html.classList.toggle('dark');
+                const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // TODO: Implement form validation and submission logic
+                // Get form data
+                const formData = new FormData(contactForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                
+                // Basic validation
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // TODO: Send email or submit to backend
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+
+            // Resume download functionality
+            const downloadResumeBtn = document.getElementById('download-resume');
+            downloadResumeBtn.addEventListener('click', function() {
+                // TODO: Implement actual resume download
+                alert('Resume download functionality would be implemented here. This would trigger a PDF download of the resume.');
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Animate skill bars when they come into view
+            const observeSkillBars = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBars = entry.target.querySelectorAll('.skill-bar');
+                        skillBars.forEach((bar, index) => {
+                            setTimeout(() => {
+                                bar.style.width = bar.style.width;
+                            }, index * 200);
+                        });
+                    }
+                });
+            });
+
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                observeSkillBars.observe(aboutSection);
+            }
+
+            // Add scroll-based navigation highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-primary-600', 'dark:text-primary-400');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('text-primary-600', 'dark:text-primary-400');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

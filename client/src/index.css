@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes progressGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes borderLine {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+@keyframes borderLineReverse {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+  }
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes card3DHover {
+  0% {
+    transform: perspective(1000px) rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(var(--rotate-x, 0)) rotateY(var(--rotate-y, 0));
+  }
+}
+
+@keyframes borderGlow {
+  0% {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+  100% {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+}
+
+:root {
+  --background: hsl(248 50% 97%);
+  --foreground: hsl(215 27% 9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(215 27% 9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(215 27% 9%);
+  --primary: hsl(217 91% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 40% 95%);
+  --secondary-foreground: hsl(215 27% 9%);
+  --muted: hsl(210 40% 96%);
+  --muted-foreground: hsl(215 27% 65%);
+  --accent: hsl(210 40% 95%);
+  --accent-foreground: hsl(215 27% 9%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(214 32% 91%);
+  --input: hsl(214 32% 91%);
+  --ring: hsl(217 91% 60%);
+  --chart-1: hsl(217 91% 60%);
+  --chart-2: hsl(159 88% 37%);
+  --chart-3: hsl(42 93% 56%);
+  --chart-4: hsl(147 78% 42%);
+  --chart-5: hsl(341 75% 51%);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(215 27% 9%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(215 27% 12%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(215 27% 12%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(217 91% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(215 27% 16%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(215 27% 16%);
+  --muted-foreground: hsl(215 27% 65%);
+  --accent: hsl(215 27% 16%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(215 27% 16%);
+  --input: hsl(215 27% 16%);
+  --ring: hsl(217 91% 60%);
+  --chart-1: hsl(217 91% 60%);
+  --chart-2: hsl(159 88% 37%);
+  --chart-3: hsl(42 93% 56%);
+  --chart-4: hsl(147 78% 42%);
+  --chart-5: hsl(341 75% 51%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent;
+  }
+  
+  .skill-bar {
+    @apply relative overflow-hidden;
+  }
+  
+  .progress-glow {
+    @apply bg-primary rounded-full;
+    animation: progressGlow 2s infinite ease-in-out;
+  }
+  
+  .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-card-glow {
+    animation: cardGlow 3s infinite ease-in-out;
+  }
+  
+  .animate-border-glow {
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    animation: borderGlow 3s infinite ease-in-out;
+  }
+  
+  .card-3d-effect {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  
+  .card-3d-effect:hover {
+    transform: perspective(1000px) rotateX(var(--rotate-x, -5deg)) rotateY(var(--rotate-y, 5deg));
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
