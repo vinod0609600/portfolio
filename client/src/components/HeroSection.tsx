@@ -81,11 +81,11 @@ const HeroSection = () => {
 
           {/* Profile Image */}
           <div className="flex justify-center lg:justify-end animate-fade-in">
-            <div className="relative">
-              {/* Outer running border with glow */}
-              <div className="absolute inset-0 w-[calc(100%+12px)] h-[calc(100%+12px)] -left-[6px] -top-[6px] rounded-2xl">
+            <div className="relative w-80 h-80">
+              {/* Outer running border with glow (circular) */}
+              <div className="absolute inset-0 w-[calc(100%+12px)] h-[calc(100%+12px)] -left-[6px] -top-[6px] rounded-full">
                 <div 
-                  className="w-full h-full border-2 border-transparent rounded-2xl" 
+                  className="w-full h-full border-2 border-transparent rounded-full" 
                   style={{
                     background: 'linear-gradient(90deg, transparent, transparent) padding-box, linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(16, 185, 129, 0.8), rgba(59, 130, 246, 0.8)) border-box',
                     backgroundSize: '200% 100%',
@@ -94,10 +94,10 @@ const HeroSection = () => {
                 ></div>
               </div>
               
-              {/* Inner running border with reverse direction */}
-              <div className="absolute inset-0 w-[calc(100%+24px)] h-[calc(100%+24px)] -left-[12px] -top-[12px] rounded-2xl">
+              {/* Inner running border with reverse direction (circular) */}
+              <div className="absolute inset-0 w-[calc(100%+24px)] h-[calc(100%+24px)] -left-[12px] -top-[12px] rounded-full">
                 <div 
-                  className="w-full h-full border-2 border-transparent rounded-2xl" 
+                  className="w-full h-full border-2 border-transparent rounded-full" 
                   style={{
                     background: 'linear-gradient(90deg, transparent, transparent) padding-box, linear-gradient(90deg, rgba(16, 185, 129, 0.6), rgba(59, 130, 246, 0.6), rgba(16, 185, 129, 0.6)) border-box',
                     backgroundSize: '200% 100%',
@@ -109,7 +109,7 @@ const HeroSection = () => {
               <img 
                 src="/assets/profile-photo.jpg" 
                 alt="Sadula Vinod - Professional headshot" 
-                className="relative w-80 h-80 object-cover rounded-2xl shadow-2xl z-10"
+                className="relative w-full h-full object-cover rounded-full shadow-2xl z-10"
                 data-testid="img-profile"
               />
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500 rounded-full flex items-center justify-center animate-bounce-slow z-20">

@@ -8,8 +8,8 @@ export function initialize3DCardEffects() {
   const cards = document.querySelectorAll('.card-3d-effect');
   
   cards.forEach(card => {
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
+    card.addEventListener('mousemove', (e: Event) => handleMouseMove(e as MouseEvent));
+    card.addEventListener('mouseleave', (e: Event) => handleMouseLeave(e as MouseEvent));
   });
 }
 
